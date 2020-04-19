@@ -1,1 +1,80 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Create a stack named - Ec2StephenUdemy for Acloudguru practice
+Resources:
+  # This template is for us east 1
+  # EC2 Instance Details
+  EC2Instance4Certification:
+    Type: AWS::EC2::Instance
+    Description: EC2 instance for AWS Solution Architect Associate course
+    Properties:
+      #      AdditionalInfo: String
+      #      Affinity: String
+      #      AvailabilityZone: String
+      #      BlockDeviceMappings:
+      #        - BlockDeviceMapping
+      #      CpuOptions:
+      #        CpuOptions
+      #      CreditSpecification:
+      #        CreditSpecification
+      #      DisableApiTermination: Boolean
+      #      EbsOptimized: Boolean
+      #      ElasticGpuSpecifications:
+      #        - ElasticGpuSpecification
+      #      ElasticInferenceAccelerators:
+      #        - ElasticInferenceAccelerator
+      #      HibernationOptions:
+      #        HibernationOptions
+      #      HostId: String
+      #      HostResourceGroupArn: String
+      #      IamInstanceProfile: String
+      ImageId: ami-0323c3dd2da7fb37d
+      #      InstanceInitiatedShutdownBehavior: stop
+      InstanceType: t2.micro
+      #      Ipv6AddressCount: Integer
+      #      Ipv6Addresses:
+      #        - InstanceIpv6Address
+      #      KernelId: String
+      KeyName: learning
+      #      LaunchTemplate:
+      #        LaunchTemplateSpecification
+      #      LicenseSpecifications:
+      #        - LicenseSpecification
+      #      Monitoring: Boolean
+      #      NetworkInterfaces:
+      #        - NetworkInterface
+      #      PlacementGroupName: String
+      #      PrivateIpAddress: String
+      #      RamdiskId: String
+      #      SecurityGroupIds:
+      #        - String
+      SecurityGroups:
+        - !Ref EC2Instance4CertificationSG
+      #      SourceDestCheck: Boolean
+      #      SsmAssociations:
+      #        - SsmAssociation
+      #      SubnetId: String
+      Tags:
+        - Key: Name
+          Value: AWS Certification
+      Tenancy: default
+  #      UserData: String
+  #      Volumes:
+  #        - Volume
 
+  EC2Instance4CertificationSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: For EC2Instace4Certification
+      GroupName: EC2Instance4CertificationSG
+      SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 165.225.106.79
+
+      SecurityGroupIngress:
+        - Ingress
+      Tags:
+        - Key: Name
+          Value: AWS Certification
+      VpcId: vpc-780aa502    #TODO: Currently in default VPC. Change to custom VPC.
